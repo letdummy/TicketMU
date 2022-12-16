@@ -1,4 +1,8 @@
-package LearnGUI;
+package TicketMU.Login;
+
+import TicketMU.Dashboard.Dashboard;
+import TicketMU.Dashboard.MemberDashboard;
+import TicketMU.Dashboard.UserDashboard;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -12,10 +16,10 @@ public class LoginCinema{
     }
     // By ascending scope for each variable, the variables are accessible everywhere
     private static JFrame frame;
-    private static JPanel panel;
+    private static JPanel panel, imagePanel;
     private static JLabel jumbotron, description, userLabel, passwordLabel, loginVector, emailLabel;
     private static JLabel wrongPasswordAlert, wrongEmailAlert, successAlert, emptyAlert;
-    private static JTextField userText;
+    private static JTextField userText = new JTextField("User"), userStatus = new JTextField("Default");
     private static JPasswordField passwordText;
     private static JButton loginButton, exitButton;
 
@@ -46,27 +50,27 @@ public class LoginCinema{
         panel.add(description);
 
         loginVector = new JLabel();
-        URL vector = getClass().getResource("./assets/loginVector.png");
+        URL vector = getClass().getResource("../assets/loginVector.png");
         ImageIcon imageIcon = new ImageIcon(vector);
         loginVector.setIcon(imageIcon);
-        loginVector.setBounds(115, 40, 500, 500);
+        loginVector.setBounds(87, 170, imageIcon.getIconWidth(), imageIcon.getIconHeight());
         panel.add(loginVector);
         //==================================================================================================
 
 
         //Username handler =================================================================================
         userLabel = new JLabel("Username:");
-        userLabel.setBounds(70, 500, 80, 25);
+        userLabel.setBounds(70, 550, 90, 25);
         userLabel.setFont(new Font("Poppins", Font.PLAIN, 15));
         userLabel.setForeground(new Color(0xFFFFFF));
         panel.add(userLabel);
 
         userText = new JTextField(20);
-        userText.setBounds(160, 500, 80, 25);
+        userText.setBounds(160, 550, 80, 25);
         panel.add(userText);
 
         emailLabel = new JLabel("@student.ums.ac.id");
-        emailLabel.setBounds(250, 500, 150, 25);
+        emailLabel.setBounds(250, 550, 150, 25);
         emailLabel.setFont(new Font("Poppins", Font.PLAIN, 15));
         emailLabel.setForeground(new Color(0xFFFFFF));
         panel.add(emailLabel);
@@ -75,53 +79,59 @@ public class LoginCinema{
 
         //Password handler =================================================================================
         passwordLabel = new JLabel("Password:");
-        passwordLabel.setBounds(70, 540, 80, 25);
+        passwordLabel.setBounds(70, 590, 80, 25);
         passwordLabel.setFont(new Font("Poppins", Font.PLAIN, 15));
         passwordLabel.setForeground(new Color(0xFFFFFF));
         panel.add(passwordLabel);
 
         passwordText = new JPasswordField(20);
-        passwordText.setBounds(160, 540, 240, 25);
+        passwordText.setBounds(160, 590, 240, 25);
         panel.add(passwordText);
 
         loginButton = new JButton("Login");
-        loginButton.setBounds(320, 580, 80, 25);
+        loginButton.setBounds(320, 630, 80, 25);
         loginButton.addActionListener(new loginListener());
         loginButton.setForeground(new Color(0x1C2538));
+        loginButton.setFont(new Font("Poppins", Font.PLAIN, 15));
+        loginButton.setBackground(new Color(0xC69749));
+        loginButton.setBorder(BorderFactory.createLineBorder(new Color(0xC69749)));
         panel.add(loginButton);
 
         exitButton = new JButton("Exit");
-        exitButton.setBounds(160, 580, 80, 25);
+        exitButton.setBounds(160, 630, 80, 25);
         exitButton.addActionListener(new closeListener());
         exitButton.setForeground(new Color(0x1C2538));
+        exitButton.setFont(new Font("Poppins", Font.PLAIN, 15));
+        exitButton.setBackground(new Color(0xC69749));
+        exitButton.setBorder(BorderFactory.createLineBorder(new Color(0xC69749)));
         panel.add(exitButton);
         //==================================================================================================
 
 
         //Alert handler ====================================================================================
         wrongPasswordAlert = new JLabel("Wrong password!");
-        wrongPasswordAlert.setBounds(160, 615, 150, 25);
+        wrongPasswordAlert.setBounds(160, 665, 150, 25);
         wrongPasswordAlert.setFont(new Font("Poppins", Font.PLAIN, 15));
         wrongPasswordAlert.setForeground(new Color(0xFF0000));
         wrongPasswordAlert.setVisible(false);
         panel.add(wrongPasswordAlert);
 
         wrongEmailAlert = new JLabel("Email can't contain '@'!");
-        wrongEmailAlert.setBounds(160, 615, 200, 25);
+        wrongEmailAlert.setBounds(160, 665, 200, 25);
         wrongEmailAlert.setFont(new Font("Poppins", Font.PLAIN, 15));
         wrongEmailAlert.setForeground(new Color(0xFF0000));
         wrongEmailAlert.setVisible(false);
         panel.add(wrongEmailAlert);
 
         emptyAlert = new JLabel("Username or password can't be empty!");
-        emptyAlert.setBounds(160, 615, 300, 25);
+        emptyAlert.setBounds(160, 665, 300, 25);
         emptyAlert.setFont(new Font("Poppins", Font.PLAIN, 15));
         emptyAlert.setForeground(new Color(0xFF0000));
         emptyAlert.setVisible(false);
         panel.add(emptyAlert);
 
         successAlert = new JLabel("Login success! wait a seconds...");
-        successAlert.setBounds(160, 615, 300, 25);
+        successAlert.setBounds(160, 665, 300, 25);
         successAlert.setFont(new Font("Poppins", Font.PLAIN, 15));
         successAlert.setForeground(new Color(0x00FF00));
         successAlert.setVisible(false);
@@ -158,8 +168,10 @@ public class LoginCinema{
                     wrongEmailAlert.setVisible(false);
                     successAlert.setVisible(true);
                     emptyAlert.setVisible(false);
+                    userStatus.setText("User");
                     Timer timer = new Timer(3000, event -> {
-                        System.out.println("Opening user dashboard");
+                        frame.dispose();
+                        new UserDashboard();
                     });
                     timer.setRepeats(false);
                     timer.start();
@@ -169,6 +181,13 @@ public class LoginCinema{
                     wrongEmailAlert.setVisible(false);
                     successAlert.setVisible(true);
                     emptyAlert.setVisible(false);
+                    userStatus.setText("Member");
+                    Timer timer = new Timer(3000, event -> {
+                        frame.dispose();
+                        new MemberDashboard();
+                    });
+                    timer.setRepeats(false);
+                    timer.start();
                 } else {
                     System.out.println("Wrong password");
                     wrongPasswordAlert.setVisible(true);
@@ -187,4 +206,15 @@ public class LoginCinema{
             System.exit(0);
         }
     }
+
+    // Getter Setter handler =================================================================================
+    public static String getUser() {
+        return userText.getText();
+    }
+
+    public static String getUserStatus() {
+        return userStatus.getText();
+    }
+
+
 }

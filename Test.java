@@ -1,4 +1,4 @@
-package LearnGUI;
+package TicketMU;
 
 import javax.swing.*;
 import java.awt.*;

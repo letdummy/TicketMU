@@ -16,10 +16,10 @@ public class Dashboard{
 
     private static JFrame frame;
     private static JPanel panel;
-    private static JLabel welcomeLabel, userStatus, statusText;
-    private static JButton homeButton, locationButton, profileButton, logoutButton;
-    private static JTextField textField;
-    private static JPasswordField passwordField;
+    private static JLabel welcomeLabel, userStatus, statusText, movie1, movie2;
+    private static JButton watchMovie1, watchMovie2;
+    private static JButton xxi, cgv, cinepolis, comingSoon;
+    private static JButton homeButton, locationButton, profileButton;
 
 
     public Dashboard() {
@@ -62,11 +62,90 @@ public class Dashboard{
 
         //==================================================================================================
 
+        // Theater Handler =====================================================================================
+        xxi = new JButton("XXI");
+        xxi.setBounds(20, 100, 60, 25);
+        xxi.setFont(new Font("Poppins", Font.BOLD, 15));
+        xxi.setForeground(new Color(0xFFFFFF));
+        xxi.setBackground(new Color(0x735F32));
+        xxi.setOpaque(true);
+        xxi.setBorderPainted(false);
+        xxi.setFocusPainted(false);
+        xxi.setMargin(new Insets(0, 0, 0, 0));
+        panel.add(xxi);
+
+        cgv = new JButton("CGV");
+        cgv.setBounds(90, 100, 60, 25);
+        cgv.setFont(new Font("Poppins", Font.BOLD, 15));
+        cgv.setForeground(new Color(0xFFFFFF));
+        cgv.setBackground(new Color(0x4D4D4D));
+        cgv.setEnabled(false);
+        cgv.setOpaque(true);
+        cgv.setBorderPainted(false);
+        cgv.setFocusPainted(false);
+        cgv.setMargin(new Insets(0, 0, 0, 0));
+        panel.add(cgv);
+
+        cinepolis = new JButton("Cinepolis");
+        cinepolis.setBounds(160, 100, 100, 25);
+        cinepolis.setFont(new Font("Poppins", Font.BOLD, 15));
+        cinepolis.setForeground(new Color(0xFFFFFF));
+        cinepolis.setBackground(new Color(0x4D4D4D));
+        cinepolis.setEnabled(false);
+        cinepolis.setOpaque(true);
+        cinepolis.setBorderPainted(false);
+        cinepolis.setFocusPainted(false);
+        cinepolis.setMargin(new Insets(0, 0, 0, 0));
+        panel.add(cinepolis);
+
+
+
+        //==================================================================================================
+        // Movie handler=====================================================================================
+        movie1 = new JLabel();
+        URL mov1 = getClass().getResource("../assets/movie1.png");
+        ImageIcon mov1Icon = new ImageIcon(mov1);
+        movie1.setIcon(mov1Icon);
+        movie1.setBounds(50, 160, mov1Icon.getIconWidth(), mov1Icon.getIconHeight());
+        panel.add(movie1);
+
+        watchMovie1 = new JButton("Watch Now");
+        watchMovie1.setBounds(50, 580, 309, 30);
+        watchMovie1.setBackground(new Color(0x1BA0E2));
+        watchMovie1.setForeground(new Color(0xFFFFFF));
+        watchMovie1.setFont(new Font("Poppins", Font.BOLD, 15));
+        watchMovie1.setFocusPainted(false);
+        watchMovie1.setBorderPainted(false);
+        watchMovie1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new MovieLanding();
+                frame.dispose();
+            }
+        });
+        panel.add(watchMovie1);
+
+        comingSoon = new JButton();
+        comingSoon.setBounds(400, 180, 137, 385);
+        comingSoon.setBackground(new Color(0x4D4D4D));
+        comingSoon.setOpaque(true);
+        comingSoon.setBorderPainted(false);
+        comingSoon.setFocusPainted(false);
+        comingSoon.setMargin(new Insets(0, 0, 0, 0));
+        comingSoon.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "Coming Soon");
+            }
+        });
+        panel.add(comingSoon);
+
         // Button ==========================================================================================
         homeButton = new JButton("Home");
         homeButton.setBounds(0, 707, 165, 60);
-        homeButton.setBackground(new Color(0xC69749));
+        homeButton.setBackground(new Color(0x735F32));
         homeButton.setForeground(new Color(0xFFFFFF));
+        homeButton.setEnabled(false);
         Border border = BorderFactory.createLineBorder(new Color(0x9E793A), 2);
         homeButton.setBorder(border);
         homeButton.setFont(new Font("Poppins", Font.BOLD, 20));
@@ -78,6 +157,11 @@ public class Dashboard{
         locationButton.setForeground(new Color(0xFFFFFF));
         locationButton.setBorder(border);
         locationButton.setFont(new Font("Poppins", Font.BOLD, 20));
+        locationButton.addActionListener(event -> {
+            frame.dispose();
+            new Location();
+        });
+
         panel.add(locationButton);
 
         profileButton = new JButton("Profile");
@@ -86,6 +170,10 @@ public class Dashboard{
         profileButton.setForeground(new Color(0xFFFFFF));
         profileButton.setBorder(border);
         profileButton.setFont(new Font("Poppins", Font.BOLD, 20));
+        profileButton.addActionListener(event -> {
+            frame.dispose();
+            new Profile();
+        });
         panel.add(profileButton);
         //==================================================================================================
 

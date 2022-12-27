@@ -14,7 +14,7 @@ public class LoginCinema{
     public static void main(String[] args) {
         LoginCinema login = new LoginCinema();
     }
-    // By ascending scope for each variable, the variables are accessible everywhere
+    // By ascending scope for each variable, the variables are accessible everywhere in this class due to private
     private static JFrame frame;
     private static JPanel panel, imagePanel;
     private static JLabel jumbotron, description, userLabel, passwordLabel, loginVector, emailLabel;
@@ -22,6 +22,9 @@ public class LoginCinema{
     private static JTextField userText = new JTextField("User"), userStatus = new JTextField("Default");
     private static JPasswordField passwordText;
     private static JButton loginButton, exitButton;
+
+    public static String mailDomain = "@student.ums.ac.id";
+
 
     public LoginCinema(){
         frame = new JFrame("TicketMU");
@@ -53,7 +56,7 @@ public class LoginCinema{
         URL vector = getClass().getResource("../assets/loginVector.png");
         ImageIcon imageIcon = new ImageIcon(vector);
         loginVector.setIcon(imageIcon);
-        loginVector.setBounds(87, 170, imageIcon.getIconWidth(), imageIcon.getIconHeight());
+        loginVector.setBounds(100, 170, imageIcon.getIconWidth(), imageIcon.getIconHeight());
         panel.add(loginVector);
         //==================================================================================================
 
@@ -69,8 +72,8 @@ public class LoginCinema{
         userText.setBounds(160, 550, 80, 25);
         panel.add(userText);
 
-        emailLabel = new JLabel("@student.ums.ac.id");
-        emailLabel.setBounds(250, 550, 150, 25);
+        emailLabel = new JLabel(mailDomain); //getting mail domain
+        emailLabel.setBounds(250, 550, 175, 25);
         emailLabel.setFont(new Font("Poppins", Font.PLAIN, 15));
         emailLabel.setForeground(new Color(0xFFFFFF));
         panel.add(emailLabel);

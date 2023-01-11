@@ -27,3 +27,9 @@ git clone https://github.com/letdummy/TicketMU.git
 
 # Contributors 
 Agus, Alyf, Hanifah
+ 
+# Screenshots
+<a href="https://github.com/letdummy/TicketMU/tree/main/Screenshots"><img src="https://raw.githubusercontent.com/letdummy/TicketMU/main/Screenshots/home.png" alt="image" width="500"></a>
+<a href="https://github.com/letdummy/TicketMU/tree/main/Screenshots"><img src="https://raw.githubusercontent.com/letdummy/TicketMU/main/Screenshots/dashboard.png" alt="image" width="500"></a>
+<a href="https://github.com/letdummy/TicketMU/tree/main/Screenshots"><img src="https://raw.githubusercontent.com/letdummy/TicketMU/main/Screenshots/seatSelection.png" alt="image" width="500"></a>
+<a href="https://github.com/letdummy/TicketMU/tree/main/Screenshots"><img src="https://raw.githubusercontent.com/letdummy/TicketMU/main/Screenshots/payment.png" alt="image" width="500"></a>

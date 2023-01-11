@@ -1,6 +1,5 @@
 package TicketMU.Login;
 
-import TicketMU.Dashboard.Dashboard;
 import TicketMU.Dashboard.MemberDashboard;
 import TicketMU.Dashboard.UserDashboard;
 
@@ -19,7 +18,8 @@ public class LoginCinema{
     private static JPanel panel, imagePanel;
     private static JLabel jumbotron, description, userLabel, passwordLabel, loginVector, emailLabel;
     private static JLabel wrongPasswordAlert, wrongEmailAlert, successAlert, emptyAlert;
-    private static JTextField userText = new JTextField("User"), userStatus = new JTextField("Default");
+    private static JTextField userText = new JTextField("User"),
+                              userStatus = new JTextField("Default");
     private static JPasswordField passwordText;
     private static JButton loginButton, exitButton;
 
@@ -210,6 +210,13 @@ public class LoginCinema{
         }
     }
 
+    static class editListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+        }
+    }
+
     // Getter Setter handler =================================================================================
     public static String getUser() {
         return userText.getText();
@@ -218,6 +225,4 @@ public class LoginCinema{
     public static String getUserStatus() {
         return userStatus.getText();
     }
-
-
 }

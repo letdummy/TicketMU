@@ -126,7 +126,11 @@ public class Location {
         profileButton.setFont(new Font("Poppins", Font.BOLD, 20));
         profileButton.addActionListener(event -> {
             frame.dispose();
-            new Profile();
+            if (LoginCinema.getUserStatus().equals("Member")) {
+                new Profile("Member");
+            } else {
+                new Profile();
+            }
         });
         panel.add(profileButton);
         //==================================================================================================

@@ -20,6 +20,7 @@ public class Profile {
     JFrame frame;
     JLabel profile;
     JLabel email, emailText, username, usernameText, payment, paymentText;
+    JLabel userStatus, userStatusText;
 
     JButton logoutButton;
 
@@ -158,7 +159,6 @@ public class Profile {
         profileButton.setFont(new Font("Poppins", Font.BOLD, 20));
         profileButton.addActionListener(event -> {
             frame.dispose();
-            //new Profile();
         });
         panel.add(profileButton);
         //==================================================================================================
@@ -167,5 +167,24 @@ public class Profile {
         frame.setVisible(true);
     }
 
+    public Profile(String status){
+        this();
+        userStatus = new JLabel("   User Status");
+        userStatus.setBounds(45, 430, 400, 40);
+        userStatus.setFont(new Font("Poppins", Font.BOLD, 15));
+        userStatus.setForeground(new Color(0xFFFFFF));
+        userStatus.setBackground(new Color(0x735F32));
+        userStatus.setOpaque(true);
+        panel.add(userStatus);
 
+        userStatusText = new JLabel();
+        userStatusText.setText("   Platinum  Member  Subscription");
+        userStatusText.setBounds(45, 470, 400, 40);
+        userStatusText.setFont(new Font("Poppins", Font.BOLD, 15));
+        userStatusText.setForeground(new Color(0x1C2538));
+        userStatusText.setBackground(new Color(0xEEEEEE));
+        userStatusText.setOpaque(true);
+        panel.add(userStatusText);
+
+    }
 }

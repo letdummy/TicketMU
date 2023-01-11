@@ -274,6 +274,7 @@ public class BookingSeat {
                 if (Objects.equals(selectedSeat[i], seatName)) {
                     selectedSeat[i] = null;
                     selectedSeatCount--;
+                    removeSeat(seatName);
                 }
             }
         }
@@ -283,9 +284,7 @@ public class BookingSeat {
             //obly add seat to label if it is not null and not duplicate
             if (selectedSeat[i] != null) {
                 if (!seatArray.getText().contains(selectedSeat[i])) {
-                    seatArray.setText(seatArray.getText() + selectedSeat[i] + " ");
-                }
-                if (!seatArray.getText().contains(selectedSeat[i])) {
+                    //add space if there is already a seat in the label
                     seatArray.setText(seatArray.getText() + selectedSeat[i] + " ");
                 }
             }
@@ -295,8 +294,10 @@ public class BookingSeat {
     void removeSeat(String seatName){
         //only remove selected seatName from label
         if (seatArray.getText().contains(seatName)) {
+            //take seatArray text and replace target label with nothing (simply remove it)
             seatArray.setText(seatArray.getText().replace(seatName + " ", ""));
         } else if (seatArray.getText().contains(seatName + " ")) {
+            //same as above but with a space after the seatName
             seatArray.setText(seatArray.getText().replace(seatName + " ", ""));
         }
     }

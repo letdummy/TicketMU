@@ -12,13 +12,10 @@ public class Payment {
     public static void main(String[] args) {
         Payment payment = new Payment();
     }
-
     JPanel panel;
     JFrame frame;
     JLabel paymentTitle, order, qr, totalAmount;
     JLabel memberBenefit;
-
-
     public Payment(){
         frame = new JFrame("Payment");
         frame.setSize(500, 800);
